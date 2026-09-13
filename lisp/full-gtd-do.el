@@ -627,9 +627,6 @@ CONTEXT, TIME-BUDGET, and ENERGY are optional initial filters."
   (interactive)
   (message "Do | C: done | s: skip | z: snooze | r: rename | RET: jump | c: change | q: quit"))
 
-;;;; Public entry points
-;; The single entry point full-gtd-do is defined in full-gtd.el
-
 (provide 'full-gtd-do)
 
 ;;; full-gtd-do.el ends here
