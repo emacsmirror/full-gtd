@@ -66,22 +66,30 @@
 Loads the root test entry point, reloads all modules, then runs
 every ERT test defined in the Lisp directory."
   (interactive)
-  (require 'ert)
-  (ert-delete-all-tests)
-  ;; Reload all modules first to ensure latest code is used
-  (full-gtd-test-reload-modules)
-  ;; Ensure test infrastructure is loaded
-  (require 'full-gtd-utils-test)
-  ;; Load test files automatically from the lisp directory
-  (let ((test-dir (expand-file-name "lisp" full-gtd-test--package-root)))
-    (dolist (file (directory-files test-dir nil "full-gtd-.*-test\\.el$"))
-      (let ((full-path (expand-file-name file test-dir)))
-        (when (file-exists-p full-path)
-          (load-file full-path)))))
-  ;; Use batch-compatible function to ensure output is visible in terminal
-  (if noninteractive
-      (ert-run-tests-batch-and-exit "full-gtd-")
-    (ert "full-gtd-")))
+  ;; Capture the invoking directory so the *ert* buffer (re)created below
+  ;; is anchored to it, regardless of any default-directory churn caused
+  ;; by reloading or test file loading.
+  (let ((dir default-directory))
+    (require 'ert)
+    (ert-delete-all-tests)
+    ;; Reload all modules first to ensure latest code is used
+    (full-gtd-test-reload-modules)
+    ;; Ensure test infrastructure is loaded
+    (require 'full-gtd-utils-test)
+    ;; Load test files automatically from the lisp directory
+    (let ((test-dir (expand-file-name "lisp" full-gtd-test--package-root)))
+      (dolist (file (directory-files test-dir nil "full-gtd-.*-test\\.el$"))
+        (let ((full-path (expand-file-name file test-dir)))
+          (when (file-exists-p full-path)
+            (load-file full-path)))))
+    ;; Use batch-compatible function to ensure output is visible in terminal
+    (let ((default-directory dir))
+      (if noninteractive
+          (ert-run-tests-batch-and-exit "full-gtd-")
+        ;; ERT's results buffer name is hard-coded as "*ert*".
+        (when (get-buffer "*ert*")
+          (kill-buffer "*ert*"))
+        (ert "full-gtd-")))))
 
 (provide 'full-gtd-test)
 
