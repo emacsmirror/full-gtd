@@ -63,17 +63,15 @@ See it in action: [Watch demo](https://github.com/user-attachments/assets/194d80
 
 ## Why Full-GTD?
 
-Existing Emacs GTD packages handle lists and agendas well, but omit two pillars of Allen's original model:
+Full-GTD covers the whole GTD framework, including the Natural Planning Model and the Six Horizons of Focus:
 
-| Feature                    | org-gtd | Full-GTD |
-|----------------------------|---------|----------|
-| Inbox processing           | ✅     | ✅      |
-| Projects & Next Actions    | ✅     | ✅      |
-| Natural Planning Model     | ❌     | ✅      |
-| Six Horizons of Focus      | ❌     | ✅      |
-| Daily/Weekly Review cycles | Partial | ✅      |
+- Inbox processing
+- Projects and next actions
+- Natural Planning Model
+- Six Horizons of Focus
+- Daily and weekly review cycles
 
-Unlike traditional tools that show long lists for you to browse, Full-GTD uses **single-card push mode** during execution: it scores actions by urgency, horizon alignment, and context match, then pushes the single optimal task. You simply act or skip—no decision fatigue, no list paralysis.
+During execution, Full-GTD uses **single-card push mode**: it scores actions by urgency, horizon alignment, and context match, then pushes the single optimal task. You simply act or skip—no decision fatigue, no list paralysis.
 
 This package is for you if you've read the book and want your tool to match the theory.
 
@@ -215,7 +213,7 @@ This design eliminates decision fatigue—you don't choose from a list, the syst
 
 > “Your mind is for having ideas, not holding them.” — David Allen
 
-Most GTD software becomes a todo‑list app with extra steps. Full-GTD stays close to the book because **Allen designed GTD as a complete system, not a feature set**:
+Full-GTD stays close to the book because **Allen designed GTD as a complete system, not a feature set**:
 
 - **Capture must be frictionless** – One key, no categorization, no thinking.
 - **The Natural Planning Model is not optional** – It’s how projects actually get done.
